@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Elias JS</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<div class="counter">
+    <div class="value"></div>
+    <div class="label">Subscribers</div>
+</div>
+<style>
+    .counter:before {
+        background-image: url("./path/to/your/profileimage.png");
+    }
+</style>
+<script type="text/javascript" src="./api.js"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`,
+            {credentials: 'same-origin'})
+            .then(response => response.json())
+            .then(function (response) {
+                document.querySelector('.value').innerHTML = response.items[0].statistics.subscriberCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            });
+    });
+</script>
+</body>
+</html>

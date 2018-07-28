@@ -1,0 +1,54 @@
+html, body {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    background: #efefef;
+    font-family: 'Montserrat', sans-serif;
+}
+
+*::-moz-selection {
+    background-color: black;
+    color: #ffffff;
+}
+
+*::selection {
+    background-color: black;
+    color: #ffffff;
+}
+
+.counter {
+    padding: 2rem;
+    margin-top: calc(50vh - 7.25rem);
+    text-align: center;
+    background: #ffffff;
+    border-radius: .4rem;
+    box-shadow: 0 0.18rem 0.25rem 0.05rem #ececec;
+}
+
+.counter:before {
+    margin-top: -6.5rem;
+    box-shadow: 0 0.18rem 0.25rem 0.05rem #ececec;
+    margin-left: -3.5rem;
+    content: "";
+    position: absolute;
+    background-size: cover;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    padding: .5rem;
+    border: .5rem solid #ffffff;
+}
+
+.counter .value {
+    font-weight: 700;
+    font-size: 6.9rem;
+}
+
+.counter .label {
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+}
