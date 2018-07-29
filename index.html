@@ -18,14 +18,32 @@
 </style>
 <script type="text/javascript" src="./api.js"></script>
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', () => {
+    let popcornHeaders = new Headers();
+    popcornHeaders.append('cache-control', 'no-store');
+    const counterValue = document.querySelector('.value');
+    const popcorn = () => {
+        console.clear();
+        console.info('Fetching data...');
         fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`,
-            {credentials: 'same-origin'})
+            {
+                credentials: 'same-origin',
+                headers: popcornHeaders
+            })
             .then(response => response.json())
             .then(function (response) {
-                document.querySelector('.value').innerHTML = response.items[0].statistics.subscriberCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                updateView(response.items[0].statistics.subscriberCount);
             });
-    });
+    };
+    const updateView = (subscribersCount) => {
+        console.info('Updating view...');
+        counterValue.innerHTML = subscribersCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+    const app = () => {
+        console.info('🍿');
+        popcorn();
+        window.setInterval(popcorn, 5000);
+    };
+    document.addEventListener('DOMContentLoaded', app());
 </script>
 </body>
 </html>
